@@ -4,7 +4,7 @@
 
 <template>
     <div>
-        <h1>Testing your patience</h1>
+        <h1>Testing your patience very hard</h1>
     </div>
 </template>
 
