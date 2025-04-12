@@ -34,14 +34,15 @@ const setTodoListLocalStorage = () => {
 
 
 
-const createTodo = (todo) => {
+const createTodo = (todo, deadLine) => {
   todoList.value.push({
   id: uid(),
   todo,
+  deadLine,
   isCompleted: null,
   isEditing: null,
   })
-  // setTodoListLocalStorage();
+  todoList.value.sort((a, b) => new Date(a.deadLine) - new Date(b.deadLine));
 };
 
 const toggleTodoComplete = (todoPos) => {

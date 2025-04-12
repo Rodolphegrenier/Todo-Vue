@@ -27,7 +27,7 @@ defineEmits(["toggle-complete", "edit-todo", "update-todo", "delete-todo"]);
     <div class="todo">
       <input v-if="todo.isEditing" type="text" :value="todo.todo" @input ="$emit('update-todo', $event.target.value, index)" />
       <span v-else :class="{'completed-todo' : todo.isCompleted}">
-        {{ todo.todo }}
+        {{ todo.todo }} before {{ todo.deadLine }}
       </span>
     </div>
     <div class="todo-actions">

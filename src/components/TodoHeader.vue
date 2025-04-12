@@ -15,7 +15,7 @@
             <ul class="nav-routes">
                 <RouterLink to="/">Home</RouterLink>
                 <RouterLink to="/about">About</RouterLink>
-                <RouterLink to="/testing">Testing</RouterLink>
+                <!-- <RouterLink to="/testing">Testing</RouterLink> -->
             </ul>
         </nav>
     </header>

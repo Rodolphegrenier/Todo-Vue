@@ -7,6 +7,7 @@ const emit = defineEmits(["create-todo"]);
 const todoState = reactive(
   {
     todo: "",
+    deadLine:null,
     invalid:null,
     errMsg: "",
   }
@@ -14,14 +15,15 @@ const todoState = reactive(
 
 const createTodo = () => {
   todoState.invalid = null;
-  if(todoState.todo !=="") 
+  if(todoState.todo !==""&& todoState.deadLine !== null) 
   {
-  emit("create-todo", todoState.todo);
-  todoState.todo = "";
+    emit("create-todo", todoState.todo, todoState.deadLine);
+    todoState.todo = "";
+    todoState.deadLine = null;
   return;
   }
   todoState.invalid=true;
-  todoState.errMsg="Todo value cannot be empty"
+  todoState.errMsg="Todo value or date cannot be empty"
 };
 
   
@@ -33,10 +35,8 @@ const createTodo = () => {
   <h1>Hellow</h1>
     <div class="input-wrap" :class="{'input-err' : todoState.invalid}">
             <input type="text" v-model = "todoState.todo">
+            <input type="date" v-model="todoState.deadLine">
             <TodoButton @click="createTodo()"/>
-              
-            
-            
     </div>
     <p v-if= "todoState.invalid" class="err-msg">{{ todoState.errMsg}}</p>
     <!-- <p v-show="todoState.invalid" class="err-msg">{{ todoState.errMsg}}</p> -->
@@ -45,6 +45,7 @@ const createTodo = () => {
 <style lang="scss" scoped>
   .input-wrap {
   display: flex;
+  // gap: 10px;
   transition: 250ms ease;
   border: 2px solid #41b080;
 
@@ -60,9 +61,11 @@ const createTodo = () => {
   
 
   input {
-    width: 100%;
+    flex: 1;
+    // width: 100%;
     padding: 8px 6px;
     border: none;
+    border: 2px solid #41b080;
 
     &:focus {
       outline: none;
