@@ -51,11 +51,15 @@ const toggleTodoComplete = (todoPos) => {
 
 const toggleEditTodo = (todoPos) => {
   todoList.value[todoPos].isEditing = !todoList.value[todoPos].isEditing;
+  todoList.value.sort((a, b) => new Date(a.deadLine) - new Date(b.deadLine));
 // setTodoListLocalStorage(); 
 };
 
-const updateTodo = (todoVal, todoPos) => {
+const updateTodo = (todoVal, todoDeadLine, todoPos) => {
+  //  console.log(`Event received: field=${field}, value=${value}, index=${todoPos}`);
   todoList.value[todoPos].todo = todoVal;
+  todoList.value[todoPos].deadLine = todoDeadLine;
+  
   // setTodoListLocalStorage(); 
 };
 
